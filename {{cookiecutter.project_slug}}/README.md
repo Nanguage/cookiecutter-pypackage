@@ -28,7 +28,7 @@
 
 ## Credits
 
-This package was created with Cookiecutter_ and the `` project template.
+This package was created with Cookiecutter and the `Nanguage/cookiecuter-pypackage` project template.
 
 + Cookiecutter: https://github.com/audreyr/cookiecutter
-+ `audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
++ `Nanguage/cookiecutter-pypackage`: https://github.com/Nanguage/cookiecutter-pypackage
