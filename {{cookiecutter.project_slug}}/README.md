@@ -20,6 +20,7 @@
     <img src="https://img.shields.io/github/license/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}" alt="{{cookiecutter.open_source_license}}" />
   </a>
 </p>
+</div>
 
 
 ## Features
