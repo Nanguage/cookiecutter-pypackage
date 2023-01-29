@@ -2,17 +2,37 @@
 
 """The setup script."""
 
+import re
 from setuptools import setup, find_packages
 
-with open('README.rst') as readme_file:
-    readme = readme_file.read()
 
-with open('HISTORY.rst') as history_file:
-    history = history_file.read()
+def get_long_description():
+    return "See https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}"
 
-requirements = [{%- if cookiecutter.command_line_interface|lower == 'click' %}'Click>=7.0',{%- endif %} ]
+def get_version():
+    with open("{{ cookiecutter.project_slug }}/__init__.py") as f:
+        for line in f.readlines():
+            m = re.match("__version__ = '([^']+)'", line)
+            if m:
+                return m.group(1)
+        raise IOError("Version information can not found.")
 
-test_requirements = [{%- if cookiecutter.use_pytest == 'y' %}'pytest>=3',{%- endif %} ]
+
+def get_install_requirements():
+    requirements = [
+    ]
+    return requirements
+
+
+requires_test = ['pytest', 'pytest-cov', 'flake8', 'mypy']
+requires_doc = []
+with open("docs/requirements.txt") as f:
+    for line in f:
+        p = line.strip()
+        if p:
+            requires_doc.append(p)
+
+
 
 {%- set license_classifiers = {
     'MIT license': 'License :: OSI Approved :: MIT License',
@@ -25,7 +45,7 @@ test_requirements = [{%- if cookiecutter.use_pytest == 'y' %}'pytest>=3',{%- end
 setup(
     author="{{ cookiecutter.full_name.replace('\"', '\\\"') }}",
     author_email='{{ cookiecutter.email }}',
-    python_requires='>=3.6',
+    python_requires='>=3.8',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
@@ -34,30 +54,26 @@ setup(
 {%- endif %}
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
     ],
     description="{{ cookiecutter.project_short_description }}",
-    {%- if 'no' not in cookiecutter.command_line_interface|lower %}
-    entry_points={
-        'console_scripts': [
-            '{{ cookiecutter.project_slug }}={{ cookiecutter.project_slug }}.cli:main',
-        ],
-    },
-    {%- endif %}
-    install_requires=requirements,
+    install_requires=get_install_requirements(),
 {%- if cookiecutter.open_source_license in license_classifiers %}
     license="{{ cookiecutter.open_source_license }}",
 {%- endif %}
-    long_description=readme + '\n\n' + history,
+    long_description=get_long_description(),
     include_package_data=True,
     keywords='{{ cookiecutter.project_slug }}',
     name='{{ cookiecutter.project_slug }}',
     packages=find_packages(include=['{{ cookiecutter.project_slug }}', '{{ cookiecutter.project_slug }}.*']),
-    test_suite='tests',
-    tests_require=test_requirements,
     url='https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}',
-    version='{{ cookiecutter.version }}',
+    version=get_version(),
     zip_safe=False,
+    extra_requires={
+        'test': requires_test,
+        'doc': requires_doc,
+        'dev': ["pip", "setuptools", "wheel", "twine", "ipdb"] + requires_test + requires_doc,
+    }
 )
