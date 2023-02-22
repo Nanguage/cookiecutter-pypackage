@@ -71,7 +71,7 @@ setup(
     url='https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}',
     version=get_version(),
     zip_safe=False,
-    extra_requires={
+    extras_require={
         'test': requires_test,
         'doc': requires_doc,
         'dev': ["pip", "setuptools", "wheel", "twine", "ipdb"] + requires_test + requires_doc,
