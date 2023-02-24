@@ -32,7 +32,7 @@ jobs:
           mypy {{cookiecutter.project_slug}}/
       - name: Test with pytest
         run: |
-          pytest --cov=./ tests/ --cov-report=xml
+          pytest --cov=./{{cookiecutter.project_slug}}/ tests/ --cov-report=xml
       - name: Upload to codecov
         uses: codecov/codecov-action@v2
         with:
