@@ -82,7 +82,6 @@ setup(
         'test': requires_test,
 {%- if cookiecutter.need_docs == 'yes' %}
         'doc': requires_doc,
-
 {%- endif -%}
         'dev': requires_dev,
     }
