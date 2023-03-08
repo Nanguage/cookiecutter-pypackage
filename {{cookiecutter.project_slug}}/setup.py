@@ -25,6 +25,11 @@ def get_install_requirements():
 
 
 requires_test = ['pytest', 'pytest-cov', 'flake8', 'mypy']
+packages_for_dev = ["pip", "setuptools", "wheel", "twine", "ipdb"]
+
+requires_dev = packages_for_dev + requires_test
+
+{%- if cookiecutter.need_docs == 'yes' %}
 requires_doc = []
 with open("docs/requirements.txt") as f:
     for line in f:
@@ -32,6 +37,8 @@ with open("docs/requirements.txt") as f:
         if p:
             requires_doc.append(p)
 
+requires_dev += requires_doc
+{%- endif -%}
 
 
 {%- set license_classifiers = {
@@ -73,7 +80,9 @@ setup(
     zip_safe=False,
     extras_require={
         'test': requires_test,
+{%- if cookiecutter.need_docs == 'yes' %}
         'doc': requires_doc,
-        'dev': ["pip", "setuptools", "wheel", "twine", "ipdb"] + requires_test + requires_doc,
+{%- endif -%}
+        'dev': requires_dev,
     }
 )

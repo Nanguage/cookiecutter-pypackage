@@ -1,4 +1,6 @@
+{%- if cookiecutter.need_docs == 'yes' }
 graft docs/
+{%- endif %}
 
 include LICENSE
 include README.md

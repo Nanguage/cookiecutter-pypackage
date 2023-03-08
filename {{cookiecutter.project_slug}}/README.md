@@ -10,9 +10,11 @@
     <a href="https://app.codecov.io/gh/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}">
         <img src="https://codecov.io/gh/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}/branch/master/graph/badge.svg" alt="codecov">
     </a>
+{%- if cookiecutter.need_docs == "yes" %}
     <a href="https://{{cookiecutter.project_slug}}.readthedocs.io/en/latest/">
     	<img src="https://readthedocs.org/projects/{{cookiecutter.project_slug}}/badge/?version=latest" alt="Documentation">
     </a>
+{%- endif %}
   <a href="https://pypi.org/project/{{cookiecutter.project_slug}}/">
     <img src="https://img.shields.io/pypi/v/{{cookiecutter.project_slug}}.svg" alt="Install with PyPi" />
   </a>
@@ -21,6 +23,8 @@
   </a>
 </p>
 </div>
+
+**Work In Progress**
 
 
 ## Features
