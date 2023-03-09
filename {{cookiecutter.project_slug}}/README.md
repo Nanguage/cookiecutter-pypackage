@@ -33,7 +33,7 @@
 
 ## Credits
 
-This package was created with Cookiecutter and the `Nanguage/cookiecuter-pypackage` project template.
+This package was created with Cookiecutter and the `Nanguage/cookiecutter-pypackage` project template.
 
 + Cookiecutter: https://github.com/audreyr/cookiecutter
 + `Nanguage/cookiecutter-pypackage`: https://github.com/Nanguage/cookiecutter-pypackage
