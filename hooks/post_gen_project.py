@@ -20,3 +20,4 @@ if __name__ == '__main__':
     if 'no' == '{{ cookiecutter.need_docs }}':
         remove_dir('docs')
         remove_file('.readthedocs.yml')
+        remove_file('.github/workflows/.deploy_docs.yml')
